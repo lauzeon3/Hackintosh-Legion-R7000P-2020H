@@ -1,0 +1,47 @@
+# macOS 系统文件
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.DocumentRevisions-V100
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# 用户 IDE
+CLAUDE.md
+.claude/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 第三方源码 / 本地参考资料
+reference/*
+
+# 命令执行日志
+logs/*
+!logs/README.md
+
+# 临时诊断
+/tmp/
+*.tmp
+
+# 编译产物
+features/*/bin/charge-mode
+*.o
+*.obj
+*.dSYM/
+
+# 部署文件
+!features/*/bin/SSDT-*.aml
+!features/*/bin/*.sh
+
+# 其他系统
+Thumbs.db
+ehthumbs.db
+Desktop.ini
