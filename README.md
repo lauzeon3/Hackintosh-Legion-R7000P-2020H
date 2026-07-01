@@ -39,10 +39,10 @@
 
 ```bash
 sudo charge-mode status        # 🛡️ 养护模式 / ⚡ 快充模式 / 🔌 常规充电
-sudo charge-mode conservation # 切到养护（上限 ~60%）
-sudo charge-mode normal       # 切到常规
-sudo charge-mode rapid        # 切到快充
-sudo charge-mode battery      # 详细电池信息
+sudo charge-mode conservation  # 切到养护（上限 ~60%）
+sudo charge-mode normal        # 切到常规
+sudo charge-mode rapid         # 切到快充
+sudo charge-mode battery       # 详细电池信息
 ```
 
 **实现原理**：通过 IORegistry 写 `IdeaVPC` 节点的 `ConservationMode` / `RapidChargeMode` 属性，YogaSMC kext 监听属性变化并调 `SBMC(3/5/7/8)` 命令控制 EC 内部寄存器。
@@ -57,7 +57,7 @@ sudo charge-mode battery      # 详细电池信息
 | 常规 | `No` | `No` | 100% 充满 |
 | 快充 | `No` | `Yes` | 100W PD 高速 |
 
-> ⚠️ **macOS 顶部状态栏问题**：使用 100W USB-C 线时 macOS 无法激活充电标志，Windows 系统同理。原因见 [已知问题](#已知问题)。
+> ⚠️ **macOS 顶部状态栏问题**：使用 100W USB-C 线时 macOS 无法激活充电标志，Windows 系统同理。原因见 [已知问题](#-已知问题)。
 
 详细文档：[docs/charge-mode.md](docs/charge-mode.md) · 源码：[features/charge-mode/](features/charge-mode/)
 
@@ -98,10 +98,6 @@ sudo charge-mode battery      # 详细电池信息
 | 电池 | LCFC BAT20101001 (80Wh) | ✅ |
 | 屏幕 | BOE 1080p 144Hz | ✅ |
 
-完整 ACPI 表反编译：[reference/acpi-tables/](reference/acpi-tables/)
-
-> 💡 该目录**不入仓**（不同 BIOS 表不同，复用会误导）。请按 [docs/acpi-extract.md](docs/acpi-extract.md) 提取自己机器的表。
-
 ---
 
 ## 📁 项目结构
@@ -117,7 +113,7 @@ Hackintosh-Legion-R7000P-2020H/
 │   │   ├── tests/            # 验证脚本
 │   │   └── README.md
 │   └── <新功能>/              # 未来：wifi-fix、sleep、trackpad ...
-├── reference/                # 第三方代码库参考
+├── reference/                # 第三方代码库、ACPI 表文件
 ├── scripts/                  # 通用诊断脚本（ec-diag 等）
 └── .gitignore
 ```
@@ -125,6 +121,8 @@ Hackintosh-Legion-R7000P-2020H/
 ---
 
 ## 🛠 开发者备忘
+
+💡 完整 ACPI 表反编译存放路径：`reference/acpi-tables/`，该目录**不入仓**（不同 BIOS 表不同，复用会误导）。请按 [docs/acpi-extract.md](docs/acpi-extract.md) 提取自己机器的表。
 
 要为本机添加新功能：
 
